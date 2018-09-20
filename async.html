@@ -13,23 +13,29 @@
     <p id="id_line2">UnKnown</p>
 
     <script>
-        const getResult = new Promise((resolve, reject) => {
-            setTimeout(() => {
+        var promise = new Promise(function (resolve, reject) {
+            setTimeout(function () {
                 var params = { enableAustralianPostal: 0, enableAztec: 0, enableCompositeCC_AB: 0, enableCompositeCC_C: 0 };
                 resolve(params);
+                console.log("end of timeout");
             }, 1000);
         });
 
-        function testReturnPromise() {
+        function testReturnPromise(promise) {
 
-            return this.getResult.then(result => {
+            return promise.then(function (result) {
+                console.log(result);
                 return result;
             });
-        }
-        document.getElementById("id_line1").textContent = "call a function that return a function that return a promise?";
-        var result = getResult();
-        document.getElementById("id_line2").textContent = "aa";
 
+        }
+        document.getElementById("id_line1").textContent = "call a function that return a return from .then of a promise";
+        try {
+            var result = testReturnPromise(promise);
+        } catch (error) {
+            document.getElementById("id_line2").textContent = error;
+        }
+        document.getElementById("id_line2").textContent = result;
 
     </script>
 </body>
