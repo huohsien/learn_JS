@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" <meta name="viewport" content="width=device-width" />
+    <title> Asynchronous </title>
+</head>
+
+<body>
+    <h1>Asynchronous</h1>
+    <hr>
+    <p id="id_line1">UnKnown</p>
+    <p id="id_line2">UnKnown</p>
+
+    <script>
+        const getResult = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                var params = { enableAustralianPostal: 0, enableAztec: 0, enableCompositeCC_AB: 0, enableCompositeCC_C: 0 };
+                resolve(params);
+            }, 1000);
+        });
+
+        function testReturnPromise() {
+
+            return this.getResult.then(result => {
+                return result;
+            });
+        }
+        document.getElementById("id_line1").textContent = "call a function that return a function that return a promise?";
+        var result = getResult();
+        document.getElementById("id_line2").textContent = "aa";
+
+
+    </script>
+</body>
+
+</html>
